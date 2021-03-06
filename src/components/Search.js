@@ -14,18 +14,12 @@ export const Search = () => {
     const [data, setData] = useState([]);
     console.log(query)
 
-    let repos = [];
 
     const searchRepos = async (query) => {
         const res = await axios(`http://api.github.com/users/${query}/repos?client_id=${clientId}&client_secret=${clientSecret}`);
-        console.log(res);
-  
-    
-        repos = res.data;
-        console.log(repos);
+        console.log(res.data);
 
         setData(res.data);
-        console.log(data)
     }
     
 
