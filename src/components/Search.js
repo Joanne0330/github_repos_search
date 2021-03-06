@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Repo from './Repo';
 // styling
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -20,11 +21,12 @@ export const Search = () => {
         console.log(res.data);
 
         setData(res.data);
+        setQuery("");
     }
     
 
     return (
-        <div  style={{padding: '10rem'}}>
+        <div  style={{padding: '10rem', marginLeft: '10rem', marginRigh: '10rem'}}>
             <Form>
                 <Form.Group controlId="githubInput">
                     <Form.Control 
@@ -46,8 +48,9 @@ export const Search = () => {
                     Search repos
                 </Button>
             </Form>
-            {data.map(repo =>
-                <h3>{repo.name}</h3>)}
+            {data.map(item => (
+                <Repo item={item}/>
+            ))}
         </div>
     )
 }
