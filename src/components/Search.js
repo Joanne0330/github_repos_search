@@ -5,8 +5,8 @@ import Repo from './Repo';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // API keys
-const clientId = process.env.REACT_APP_CLIENT_ID;
-const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+// const clientId = process.env.REACT_APP_CLIENT_ID;
+// const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
 
 
@@ -17,10 +17,10 @@ export const Search = () => {
 
 
     const searchRepos = async (query) => {
-        const res = await axios(`http://api.github.com/users/${query}/repos?client_id=${clientId}&client_secret=${clientSecret}`);
+        const res = await axios(`https://api.github.com/search/repositories?q=${query}`);
         console.log(res.data);
 
-        setData(res.data);
+        setData(res.data.items);
         setQuery("");
     }
     
@@ -31,7 +31,7 @@ export const Search = () => {
                 <Form.Group controlId="githubInput">
                     <Form.Control 
                         type="text" 
-                        placeholder="Enter github user" 
+                        placeholder="Enter name of the repo" 
                         value={query}
                         onChange={event => {
                             event.preventDefault();

@@ -1,6 +1,6 @@
 # This is a tech challenge for Degree53
 
-Task: User is able to search for detailed repository information via Github username. This one page app uses Github API with 2 different endpoints so that README of a repo (if it exists) is also displayed.
+Task: User is able to search for detailed repository information via name. This one page app uses Github API with 2 different endpoints so that README of a repo (if it exists) is also displayed.
 
 To run the app: npm start
 
