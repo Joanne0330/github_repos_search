@@ -26,8 +26,8 @@ export const Search = () => {
     
 
     return (
-        <div  style={{padding: '10rem', marginLeft: '10rem', marginRigh: '10rem'}}>
-            <Form>
+        <div  style={{padding: '10rem', marginRigh: '10rem'}}>
+            <Form style={{marginLeft: '12rem', marginRight: '12rem'}}>
                 <Form.Group controlId="githubInput">
                     <Form.Control 
                         type="text" 
