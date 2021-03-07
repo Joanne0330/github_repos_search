@@ -5,8 +5,8 @@ import Repo from './Repo';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // API keys
-// const clientId = process.env.REACT_APP_CLIENT_ID;
-// const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+const clientId = process.env.REACT_APP_CLIENT_ID;
+const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
 
 
@@ -17,7 +17,7 @@ export const Search = () => {
 
 
     const searchRepos = async (query) => {
-        const res = await axios(`https://api.github.com/search/repositories?q=${query}`);
+        const res = await axios(`https://api.github.com/search/repositories?q=${query}&client_id=${clientId}&client_secret=${clientSecret}`);
         console.log(res.data);
 
         setData(res.data.items);
