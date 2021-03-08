@@ -26,8 +26,8 @@ export const Search = () => {
     
 
     return (
-        <div  style={{padding: '10rem', marginRigh: '10rem'}}>
-            <Form style={{marginLeft: '12rem', marginRight: '12rem'}}>
+        <div className="div-style">
+            <Form className="input-style">
                 <Form.Group controlId="githubInput">
                     <Form.Control 
                         type="text" 
@@ -35,9 +35,7 @@ export const Search = () => {
                         value={query}
                         onChange={event => {
                             event.preventDefault();
-                            setQuery(event.target.value)
-                        }
-
+                            setQuery(event.target.value)}
                         }
                     />
                 </Form.Group>

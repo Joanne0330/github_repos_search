@@ -17,14 +17,11 @@ export const Repo = (item) => {
         <div style={{padding: "2rem"}} key={repo.id}>
             <Card className="text-center">
                 <Card.Header>
-                    <Card.Link href={repo.html_url} target="_blank">Link to the repo</Card.Link>
+                    <Card.Subtitle as="h5" style={{color: 'grey'}}>Owner: {repo.owner.login}</Card.Subtitle>
                 </Card.Header>
                 <Card.Body>
-                    <Card.Subtitle style={{color: 'grey'}}>Created on {moment(repo.created_at).format('MMMM do YYYY')}</Card.Subtitle>
                     <br></br>
                     <Card.Title as="h3">{repo.name}</Card.Title>
-                    <br></br>
-                    <Card.Subtitle as="h5" style={{color: 'grey'}}>Owner: {repo.owner.login}</Card.Subtitle>
                     <br></br>
                     <Card.Subtitle style={{color: 'grey'}}>Language: {repo.language}</Card.Subtitle>
                     <br></br>

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Buffer } from 'buffer/';
 import marked from 'marked';
+import axios from 'axios';
 // styling
 import Card from 'react-bootstrap/Card';
-import axios from 'axios';
+import Image from 'react-bootstrap/Image';
 
 export const RepoDetails = (details) => {
     const repoDetails = details.details
@@ -14,14 +15,16 @@ export const RepoDetails = (details) => {
     const repoName = repoDetails.name;
 
     const [readme, setReadme] = useState("")
+
+    const formatter = (code) => {
+        const buff = Buffer.from(code, 'base64').toString('utf-8');
+        setReadme(marked(buff));
+    }
     
     useEffect(() => {
         const fetchReadme = async () => {
             const res = await axios(`http://api.github.com/repos/${owner}/${repoName}/contents/README.md`)
-            const buff = Buffer.from(res.data.content, 'base64').toString('utf-8');
-            // console.log(buff);
-            setReadme(marked(buff));
-
+            formatter(res.data.content);
         }
         fetchReadme();
     }, [])
@@ -30,9 +33,20 @@ export const RepoDetails = (details) => {
         <div>
             <Card className="text-center">
                 <Card.Body>
-                    <Card.Subtitle style={{color: 'grey'}}>Updated on {moment(repoDetails.updated_on).format('MMMM do YYYY')}</Card.Subtitle>
+                    <Card.Link href={repoDetails.html_url} target="_blank">Link to the repo</Card.Link>
+                    <br />
+                    <br />
+                    <Image src={repoDetails.owner.avatar_url} rounded fluid />
+                    <br />
+                    <br />
+                    <Card.Subtitle style={{color: 'grey'}}>Created on {moment(repoDetails.created_at).format('MMMM do YYYY')}</Card.Subtitle>
+                    <br />
+                    <Card.Subtitle style={{color: 'grey'}}>Last pushed on {moment(repoDetails.pushed_at).format('MMMM do YYYY')}</Card.Subtitle>
+                    <br />
+                    <Card.Subtitle style={{color: 'grey'}}>Size: {repoDetails.size}</Card.Subtitle>
+
                 </Card.Body>
-                <Card.Footer dangerouslySetInnerHTML={{__html: readme}}className="text-left" style={{color: 'grey'}}></Card.Footer>
+                <Card.Footer dangerouslySetInnerHTML={{__html: readme}} className="text-left" style={{color: 'grey'}}></Card.Footer>
             </Card>
         </div>
     )
