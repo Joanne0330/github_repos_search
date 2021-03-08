@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import moment from 'moment';
 import RepoDetails from './RepoDetails';
 // styling
 import Card from 'react-bootstrap/Card';
