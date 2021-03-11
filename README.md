@@ -8,4 +8,6 @@
 
 **Libraries used:** Bootstrap, Moment, Marked, Buffer.
 
+To install the dependencies, run: `npm install buffer axios marked react-bootstrap bootstrap` and then `npm install moment --save`
+
 To run the app: `npm start`
